@@ -98,7 +98,7 @@ Steps I use to solve above error:
 
 2.	Build the updated code: After changing the code in KVM for the assignment requirement, you can rebuild using the same “make” sequence commands or simply use       below command.
 
-    sudo make -j 2 && sudo make modules_install -j 2 && sudo make install -j 2 (*This will show you any error if you have and this way you can check fast, if no        error than follow next step to load and unload)
+    sudo make -j 2 modules M=arch/x86/kvm (*This will show you any error if you have and this way you can check fast, instead of 2 write your nproc output if no        error than follow next step to load and unload)
     
 3.	Load and unload the kvm kernel module (kvm.ko) and kvm-intel module (kvm-intel.ko) using the following commands:
 
