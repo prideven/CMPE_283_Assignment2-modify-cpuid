@@ -2,7 +2,7 @@
 
 **Note for Prof. Larkin: you can also check my work in master linux repo which I forked path is as follows: https://github.com/preeti13parihar/linux
 
-#Q1.For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
+# Q1. For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
 
 Team Members:
 
@@ -24,7 +24,7 @@ Priyanka Devendran- (id:015231411)
 
 *Contribution: code for test program that exercises the functionality in our hypervisor modification and help executing vmx.c
 
-#Q2.Describe in detail the steps you used to complete the assignment. Consider your reader to be someone skilled in software development but otherwise unfamiliar with the assignment. Good answers to this question will be recipes that someone can follow to reproduce your development steps.
+#   Q2.Describe in detail the steps you used to complete the assignment. Consider your reader to be someone skilled in software development but otherwise               unfamiliar with the assignment. Good answers to this question will be recipes that someone can follow to reproduce your development steps.
 
 Prerequisites:
 
@@ -46,11 +46,12 @@ Your assignment is to modify the CPUID emulation code in KVM to report back addi
 2.	Created Virtual Machine by allocating 200GB storage and 4GB RAM.
 
 3.	Clone the Git repository for the latest linux kernel source code :
-git clone https://github.com/torvalds/linux.git
+    
+    git clone https://github.com/torvalds/linux.git
 
 4.	Building The Kernel:
 
-To build the kernel (once you have cloned the Linux git repository), the following sequence of commands can be used (eg, for Ubuntu – other distributions have similar steps but may differ in the installation of the build prerequisites):
+    To build the kernel (once you have cloned the Linux git repository), the following sequence of commands can be used (eg, for Ubuntu – other distributions have     similar steps but may differ in the installation of the build prerequisites):
 
 1.  sudo bash
 
@@ -70,7 +71,7 @@ Note: When I reboot I got following error: Gave up waiting for root device. ALER
 
 Steps I use to solve above error:
 
-1.	reboot -f (one window will open in front of you with 3 options choose advance option and now you have 5 to 6 ubuntu versionselect the ubuntu version same was before the reboot in my case it was 5.4.0-52-genericpress enteropen the terminalgo to linux source folder and execute below mentioned command in sequence and then reboot again )
+1.	reboot -f (one window will open in front of you with 3 options choose advance option and now you have 5 to 6 ubuntu versionselect the ubuntu version same was     before the reboot in my case it was 5.4.0-52-genericpress enteropen the terminalgo to linux source folder and execute below mentioned command in sequence       and then reboot again )
 
 2.	sudo bash
 
@@ -92,10 +93,10 @@ Steps I use to solve above error:
 
 1.	I edited cpuid.c and vmx.c for implementing code for calculating total number of  exits and the total time spent processing all exits see cpuid.c and vmx.c
 
-I modify function kvm_emulate_cpuid in the following file:
-linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arch/x86/kvm/vmx/vmx.c
+    I modify function kvm_emulate_cpuid in the following file:
+    linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arch/x86/kvm/vmx/vmx.c
 
-2.	Build the updated code: After changing the code in KVM for the assignment, you can rebuild using the same “make” sequence of commands, that is use make-module commands mentioned above.
+2.	Build the updated code: After changing the code in KVM for the assignment, you can rebuild using the same “make” sequence of commands, that is use make-module     commands mentioned above.
 
 3.	Load and unload the kvm kernel module (kvm.ko) and kvm-intel module (kvm-       intel.ko) using the following commands:
 
@@ -113,7 +114,7 @@ linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arc
 
     sudo apt-get update
 
-    sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-         utils virt-manager (*There are different commands available over internet       but this is simple and single line command to install kvm and virt-manager)
+    sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager (*There are different commands available over internet but this           is simple and single line command to install kvm and virt-manager)
 
 2.	Verify KVM Installation using the following command. You should see an empty list of virtual machines. This indicates that everything is working correctly.
 
@@ -136,13 +137,13 @@ linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arc
 
 7.	Now run this test1 executable file to check the output as following on terminal:
 
-./test  
+    ./test  
 
 
-#Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
+#   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
 
 
- Ans:   Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4 times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. **see below sample shapshot
+    Ans:   Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after     execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. **see below sample shapshot
 
 
 
