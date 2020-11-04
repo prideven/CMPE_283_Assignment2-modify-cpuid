@@ -1,5 +1,7 @@
 # CMPE_283_Assignment2-modify-cpuid
 
+**Note for Prof. Larkin: you can also check my work in master linux repo which I forked path is as follows: https://github.com/preeti13parihar/linux
+
 #Q1.For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
 
 Team Members:
@@ -154,3 +156,11 @@ linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arc
 
 # Test Output - After Reboot
 ![Test Output](test2.png)
+
+# Test Output - After Restart
+![Test Output](test3.png)
+
+
+![Test Output](test4.png)
+
+
