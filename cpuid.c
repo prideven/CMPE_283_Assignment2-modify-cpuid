@@ -1104,6 +1104,13 @@ EXPORT_SYMBOL_GPL(kvm_cpuid);
 
 /* *****My Code for Assignment2 Functionality starts here***** */
 
+/* Assignment2 Requirements:
+		For CPUID leaf function %eax=0x4FFFFFFF:
+		◦ Return the total number of exits (all types) in %eax
+		◦ Return the high 32 bits of the total time spent processing all exits in %ebx
+		◦ Return the low 32 bits of the total time spent processing all exits in %ecx
+		▪ %ebx and %ecx return values are measured in processor cycles  */
+
 atomic_long_t exits=ATOMIC_INIT(0);
 atomic64_t cycles_spent_in_exit=ATOMIC64_INIT(0);
 
@@ -1118,29 +1125,37 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 	ecx = kvm_rcx_read(vcpu);
 
 	
+/* *** For CPUID leaf function %eax=0x4FFFFFFF: ***  */
+	
 	if( eax == 0x4FFFFFFF){
-		eax = atomic_long_read(&exits);
-		ebx = (atomic64_read(&cycles_spent_in_exit) >> 32)&0xffffffff;
-		ecx = (atomic64_read(&cycles_spent_in_exit)&0xffffffff);
-		edx = 0;
 
-	kvm_rax_write(vcpu, eax);	
-	kvm_rbx_write(vcpu, ebx);
-	kvm_rcx_write(vcpu, ecx);
-	kvm_rdx_write(vcpu, edx);
-	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
+		kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+
+/* ***  Return the total number of exits (all types) in %eax *** */
+		eax = atomic_long_read(&exits);
+		printk("eax is 0x4fffffff \n Total number of exits eax=%d", eax);
+
+/* ***  Return the total Cycles spent in exit *** */
+		printk("eax is 0x4fffffff \n Total Cycles spent in exit = %llu", atomic64_read(&cycles_spent_in_exit));
+		
+/* ***	Return the High 32 bits of the total time spent processing all exits in %ebx *** */	
+		ebx = (atomic64_read(&cycles_spent_in_exit) >> 32)&0xffffffff;
+		printk("eax is 0x4fffffff \n The High 32 bits of the Total time spent processing all exits in ebx = %d", ebx);
+
+/* ***	Return the Low 32 bits of the total time spent processing all exits in %ecx *** */			
+		ecx = (atomic64_read(&cycles_spent_in_exit)&0xffffffff);
+		printk("eax is 0x4fffffff \n The Low 32 bits of the Total time spent processing all exits in ecx = %d", ecx);
+		
 	
-	}
-	
+	}	
 	else{	
-      
-	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
+      		kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
+	}
+		
 	kvm_rax_write(vcpu, eax);
 	kvm_rbx_write(vcpu, ebx);
 	kvm_rcx_write(vcpu, ecx);
 	kvm_rdx_write(vcpu, edx);
-	}
-	
 	return kvm_skip_emulated_instruction(vcpu);
 }
 
