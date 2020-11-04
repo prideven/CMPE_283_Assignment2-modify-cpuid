@@ -1,6 +1,6 @@
 # CMPE_283_Assignment2-modify-cpuid
 
-1. For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
+#Q1.For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
 
 Team Members:
 
@@ -20,9 +20,9 @@ Priyanka Devendran- (id:015231411)
 
 *Discussed and Researched about about exits and interrupts using SDM as a reference.
 
-*Contribution: code for test program that exercises the functionality in our hypervisor modification.
+*Contribution: code for test program that exercises the functionality in our hypervisor modification and help executing vmx.c
 
-2.Describe in detail the steps you used to complete the assignment. Consider your reader to be someone skilled in software development but otherwise unfamiliar with the assignment. Good answers to this question will be recipes that someone can follow to reproduce your development steps.
+#Q2.Describe in detail the steps you used to complete the assignment. Consider your reader to be someone skilled in software development but otherwise unfamiliar with the assignment. Good answers to this question will be recipes that someone can follow to reproduce your development steps.
 
 Prerequisites:
 
