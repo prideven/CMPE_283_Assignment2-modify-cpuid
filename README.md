@@ -96,9 +96,11 @@ Steps I use to solve above error:
     I modify function kvm_emulate_cpuid in the following file:
     linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arch/x86/kvm/vmx/vmx.c
 
-2.	Build the updated code: After changing the code in KVM for the assignment, you can rebuild using the same “make” sequence of commands, that is use make-module     commands mentioned above.
+2.	Build the updated code: After changing the code in KVM for the assignment requirement, you can rebuild using the same “make” sequence commands or simply use       below command.
 
-3.	Load and unload the kvm kernel module (kvm.ko) and kvm-intel module (kvm-       intel.ko) using the following commands:
+    sudo make -j 2 && sudo make modules_install -j 2 && sudo make install -j 2 (*This will show you any error if you have and this way you can check fast, if no        error than follow next step to load and unload)
+    
+3.	Load and unload the kvm kernel module (kvm.ko) and kvm-intel module (kvm-intel.ko) using the following commands:
 
     sudo rmmod arch/x86/kvm/kvm-intel.ko
     
@@ -143,7 +145,7 @@ Steps I use to solve above error:
 #   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
 
 
-    Ans:   Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after     execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. **see below sample shapshot
+    Ans:   Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after     execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. After that I run the module again and this time output     is completely different, the number of exits are increasing with different gap. I included 5 test cases.  **see below sample shapshot
 
 
 
