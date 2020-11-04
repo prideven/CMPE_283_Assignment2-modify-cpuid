@@ -122,7 +122,7 @@ Steps I use to solve above error:
 
     virsh -c qemu:///system list
 
-3.	Now open virtual machine manager and using Ubuntu ISO file create inner vm
+3.	Now open virtual machine manager and using Ubuntu ISO file create inner vm:
 
 4.	Open terminal and install cpuid using below command:
 
