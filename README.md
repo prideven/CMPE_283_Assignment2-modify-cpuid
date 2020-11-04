@@ -154,10 +154,10 @@ Steps I use to solve above error:
 
 
 ## Source Machine Output
-![Test Output](test1.png)
+![Test Output](test.png)
 
 ## Test Output - Inner VM
-![Test Output](test.png)
+![Test Output](test1.png)
 
 ## Test Output - After Reboot
 ![Test Output](test2.png)
