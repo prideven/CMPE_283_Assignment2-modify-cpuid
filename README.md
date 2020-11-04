@@ -145,22 +145,24 @@ Steps I use to solve above error:
 #   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
 
 
-    Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after           execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. After that I run the module again and this time output     is completely different, the number of exits are increasing with different gap no stable rate and Yes more exits are performed during certain VM operations such as EPT violation, I/O instruction and Page Fault exists etc. I included 5 test cases.  **see below sample shapshot
+    Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after           execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. After that I rebuild the module again and the number of exits are increasing with different gap no stable rate in initial test after some test case stable rate and Yes more exits are performed during certain VM operations such as EPT violation, I/O instruction and Page Fault exists etc. I included 5 test cases.  **see below sample shapshot
 
 
 
 
 
-# Test Output
-![Test Output](test.png)
 
-# Test Output
+
+## Source Machine Output
 ![Test Output](test1.png)
 
-# Test Output - After Reboot
+## Test Output - Inner VM
+![Test Output](test.png)
+
+## Test Output - After Reboot
 ![Test Output](test2.png)
 
-# Test Output - After Restart
+## Test Output - After Rebuild
 ![Test Output](test3.png)
 
 
