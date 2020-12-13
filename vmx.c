@@ -66,6 +66,11 @@
 MODULE_AUTHOR("Qumranet");
 MODULE_LICENSE("GPL");
 
+
+extern u64 total_number_exits;
+extern u64 single_exit[69];
+
+
 #ifdef MODULE
 static const struct x86_cpu_id vmx_cpu_id[] = {
 	X86_MATCH_FEATURE(X86_FEATURE_VMX, NULL),
@@ -4800,7 +4805,10 @@ static int handle_exception_nmi(struct kvm_vcpu *vcpu)
 	/*
 	 * The #PF with PFEC.RSVD = 1 indicates the guest is accessing
 	 * MMIO, it is better to report an internal error.
-	 * See the comments in vmx_handle_exit.
+	 * See the comments in 
+	 
+	 
+	 .
 	 */
 	if ((vect_info & VECTORING_INFO_VALID_MASK) &&
 	    !(is_page_fault(intr_info) && !(error_code & PFERR_RSVD_MASK))) {
