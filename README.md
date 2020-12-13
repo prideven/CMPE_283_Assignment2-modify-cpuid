@@ -1,6 +1,5 @@
-# CMPE_283_Assignment2-modify-cpuid
 
-**Note for Prof. Larkin: you can also check my work in master linux repo which I forked path is as follows: https://github.com/preeti13parihar/linux
+# Assignment3 Instrumentation via hypercall:
 
 # Q1. For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
 
@@ -14,7 +13,7 @@ Preeti Parihar- (id:015218073)
 
 *Researched and Discussed about exits and interrupts using SDM as a reference and help each other writing and executing the code.
 
-*Contribution: code for return the total number of exits and the total time spent processing all exits at the path: linux/arch/x86/kvm -> cupid.c and linux/arch/x86/kvm/vmx -> vmx.c
+*Contribution: code for return the exit for each input value provided  path: linux/arch/x86/kvm -> cupid.c and linux/arch/x86/kvm/vmx -> vmx.c
 
 Priyanka Devendran- (id:015231411)
 
@@ -150,7 +149,21 @@ Steps I use to solve above error:
     ./test  
 
 
-#   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
+#   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations? Approximately how many exits does a full VM boot entail?
+-->We could see that the number exits do not increase at a stable rate. Attaching the screenshot for the exits for VM with inputs: as 1-external interrupts, 30- I/O instructions, or 32-WRMSR, we can see that the number of exits are higher as compared to others.
+
+-->The exits enatiled by the full VM is:    as shown below, this can varry from the host machine configuration.
+
+
+
+
+
+
+
+#   Q4.Of the exit types defined in the SDM, which are the most frequent? Least?
+
+From running the test script the most frequent exit type observed in the inner VM was 30-I/O instruction exit at around 149622 (24876 HEX) exits, and we could see many exit that were 0, such as 2-triple fault, 8-NMI Window, 9-task switch, 44-APIC access, 45-Virtualized EOI, 67-UMWait, 68-TPause, etc.
+
 
 
 
