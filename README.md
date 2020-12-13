@@ -28,16 +28,19 @@ Priyanka Devendran- (id:015231411)
 
 Prerequisites:
 
-You will need a machine capable of running Linux, with VMX or SVM virtualization features exposed. You may be able to do this inside a VM, or maybe not, depending on your hardware and software configuration. You should likely be using the environment you created for assignment 1.
+To modify the CPUID emulation code in KVM to report back additional information when special CPUID leaf nodes are requested.
+* For CPUID leaf node %eax=0x4FFFFFFE:
+    * Return the number of exits for the exit number provided (on input) in %ecx
+    * This value should be returned in %eax
 
 Requirement:
 
-Your assignment is to modify the CPUID emulation code in KVM to report back additional information when a special CPUID “leaf function” is called.
-• For CPUID leaf function %eax=0x4FFFFFFF:
-◦ Return the total number of exits (all types) in %eax
-◦ Return the high 32 bits of the total time spent processing all exits in %ebx
-◦ Return the low 32 bits of the total time spent processing all exits in %ecx
-▪ %ebx and %ecx return values are measured in processor cycles
+Assignment is to modify the CPUID emulation code in KVM to report back additional information when a special CPUID “leaf function” is called.
+* For CPUID leaf function %eax=0x4FFFFFFE:
+* Return the exit if defined in SDM and KVM for each input in %eax
+* If values not found in SDM return 0 in all %eax, %ebx, %ecx registers and return 0xFFFFFFFF in %edx.
+* If exits not enabled in KVM return 0 in all %eax, %ebx, %ecx,%edx registers.
+
 
 # SETUP the Environment:
 
@@ -91,10 +94,15 @@ Steps I use to solve above error:
 
 # Implement Assignment Functionalities:
 
-1.	I edited cpuid.c and vmx.c for implementing code for calculating total number of  exits and the total time spent processing all exits see cpuid.c and vmx.c
+1.	We edited cpuid.c and vmx.c for implementing code for calculating the number of  exit for each input by referring to SDM for each exit.
+    
+    There are 69 exit reason defined in the SDM, with few skipped. The skipped ones are like 4,5,6 are returned with value 0 in all %eax, %ebx, %ecx registers and as 0xFFFFFFFF in %edx.
+    
+    If exits not enabled in KVM then we will return 0 in all %eax, %ebx, %ecx,%edx registers.
+    
 
-    I modify function kvm_emulate_cpuid in the following file:
-    linux/arch/x86/kvm/cupid.c, and vmx_handle_exit in the following file: linux/arch/x86/kvm/vmx/vmx.c
+    We modified function kvm_emulate_cpuid in the following file:
+    linux/arch/x86/kvm/cupid.c, and the different exit handler functions in the following file: linux/arch/x86/kvm/vmx/vmx.c
 
 2.	Build the updated code: After changing the code in KVM for the assignment requirement, you can rebuild using the same “make” sequence commands or simply use       below command.
 
@@ -131,13 +139,13 @@ Steps I use to solve above error:
     sudo apt-get install cpuid
 
 
-5.	Create test program name as Test_Assignment2.c file inside inner vm to test changes of cupid.c and vmx.c 
+5.	Create test program name as Test_Assignment3.c file inside inner vm to test changes of cupid.c and vmx.c 
 
-6.	Compile this Test_Assignment2.cfile using gcc and make it executable:
+6.	Compile this Test_Assignment3.cfile using gcc and make it executable:
 
     gcc Test_Assignment2.c-o test
 
-7.	Now run this test1 executable file to check the output as following on terminal:
+7.	Now run this test3 executable file to check the output as following on terminal:
 
     ./test  
 
@@ -145,7 +153,7 @@ Steps I use to solve above error:
 #   Q3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations?             Approximately how many exits does a full VM boot entail?
 
 
-    Total number of exits are approximately between 1300000 to 1500000 before reboot, after reboot number of exits are between 2400000 to 2500000. Yes after           execution of each test file number of exits are increasing. In starting it increasing with a higher number i.e. around 4 to 7 thousand and after testing 3 to 4     times its increasing with stable rate in my case it increasing with the rate of between 1 to 2 thousand. After that I rebuild the module again and the number of exits are increasing with different gap no stable rate in initial test after some test case stable rate and Yes more exits are performed during certain VM operations such as EPT violation, I/O instruction and Page Fault exists etc. I included 5 test cases.  **see below sample shapshot
+
 
 
 
